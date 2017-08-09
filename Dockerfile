@@ -32,6 +32,8 @@ COPY install/scripts/* /scripts/
 COPY install/tests/* /tests/
 RUN chmod +x /scripts/* /tests/*
 
+RUN ln -s /etc/conf/slapd.conf /etc/openldap/slapd.conf
+
 ARG SLAPDPORT=8389
 ENV SLAPDPORT $SLAPDPORT
 # You may want to turn on debugging by setting the following params
@@ -48,6 +50,9 @@ RUN mkdir -p /var/log/openldap \
  && chmod 664 $(find   /etc/openldap /var/db /var/log/openldap -type f) \
  && chmod 777 $(find   /etc/openldap /var/db /var/log/openldap -type d)
 VOLUME /var/db/
+# Note: We need the simple file 'slapd.conf' but the /etc/conf directory
+# is empty so that OpenShift can safely map the whole directory.
+VOLUME /etc/conf/slapd.conf ### LFRZ - ConfigMap Volume
 
 EXPOSE 8389
 
