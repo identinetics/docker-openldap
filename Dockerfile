@@ -52,7 +52,7 @@ RUN mkdir -p /var/log/openldap \
 VOLUME /var/db/
 # Note: We need the simple file 'slapd.conf' but the /etc/conf directory
 # is empty so that OpenShift can safely map the whole directory.
-VOLUME /etc/conf/slapd.conf ### LFRZ - ConfigMap Volume
+VOLUME /etc/conf ### LFRZ - ConfigMap Volume
 
 EXPOSE 8389
 
