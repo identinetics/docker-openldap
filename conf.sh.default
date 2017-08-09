@@ -92,6 +92,7 @@ setup_vol_mapping() {
     CONTAINER_GROUPWRITE=no
     map_docker_volume $mode "${CONTAINERNAME}.db" '/var/db' 'Z' $DOCKERVOL_SHORT
     map_docker_volume $mode "${CONTAINERNAME}.etc" '/etc/openldap' 'Z' $DOCKERVOL_SHORT
+    map_docker_volume $mode "${CONTAINERNAME}.conf" '/etc/conf' 'Z' $DOCKERVOL_SHORT
 }
 
 
