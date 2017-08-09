@@ -32,7 +32,8 @@ COPY install/scripts/* /scripts/
 COPY install/tests/* /tests/
 RUN chmod +x /scripts/* /tests/*
 
-RUN ln -s /etc/conf/slapd.conf /etc/openldap/slapd.conf
+RUN ln -s /etc/conf/slapd.conf /etc/openldap/slapd.conf \
+    && mkdir /etc/conf && chmod 777 /etc/conf
 
 ARG SLAPDPORT=8389
 ENV SLAPDPORT $SLAPDPORT
