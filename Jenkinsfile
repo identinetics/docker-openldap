@@ -83,6 +83,18 @@ pipeline {
                 '''
             }
         }
+        stage('Test PHP client library') {
+            steps {
+                sh '''
+                echo "clone d-php-ldap"
+                git clone git@github.com:identinetics/d-php-ldap.git
+                cd d-php-ldap
+                git submodule update --init
+                ./dscripts/build.sh
+                ./dscripts/run.sh -I
+                '''
+            }
+        }
         /*stage('Push to Registry') {
             when {
                 environment name: ${env.has_docker_repo}, value: 'true'
