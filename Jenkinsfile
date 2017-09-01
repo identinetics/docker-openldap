@@ -85,7 +85,7 @@ pipeline {
         }
         stage('Test PHP client library') {
             steps {
-                build job: 'd-php-ldap'
+                build job: 'd-php-ldap', parameters: [[$class: 'StringParameterValue', name: 'ldap_ip', value: '10.1.1.6']]
             }
         }
     }
