@@ -84,7 +84,9 @@ pipeline {
             }
         }
         stage('Test PHP client library') {
-            build job: 'd-php-ldap'
+            steps {
+                build job: 'd-php-ldap'
+            }
         }
     }
     post {
