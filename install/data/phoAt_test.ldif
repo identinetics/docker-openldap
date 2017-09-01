@@ -1,5 +1,5 @@
 # ---------- Test-User 1 -----------------
-dn: cn=test.user1234567, ou=user,ou=ph08,o=BMUKK
+dn: cn=test.user1234567,ou=user,ou=ph08,o=BMUKK
 objectClass: inetOrgPerson
 objectClass: phonlinePerson
 objectClass: idnSyncstat
