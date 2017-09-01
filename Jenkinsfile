@@ -90,7 +90,9 @@ pipeline {
                 git clone git@github.com:identinetics/d-php-ldap.git
                 cd d-php-ldap
                 git submodule update --init
+                ln -s conf.sh.default conf.sh
                 ./dscripts/build.sh
+                ln -s ldapenv.conf.default ldapenv.conf
                 ./dscripts/run.sh -I
                 '''
             }
