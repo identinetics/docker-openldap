@@ -84,34 +84,8 @@ pipeline {
             }
         }
         stage('Test PHP client library') {
-            steps {
-                sh '''
-                echo "clone d-php-ldap"
-                if [[ ! "d-php-ldap" ]]; then
-                    git clone git@github.com:identinetics/d-php-ldap.git
-                    cd d-php-ldap
-                    git submodule update --init
-                    ln -s conf.sh.default conf.sh
-                    ln -s ldapenv.conf.default ldapenv.conf
-                else
-                    cd d-php-ldap
-                    git pull
-                fi
-                ./dscripts/build.sh
-                ./dscripts/run.sh -I
-                '''
-            }
+            build job: 'd-php-ldap'
         }
-        /*stage('Push to Registry') {
-            when {
-                environment name: ${env.has_docker_repo}, value: 'true'
-            }
-            steps {
-                sh '''
-                ./dscripts/manage.sh push
-                '''
-            }
-        }*/
     }
     post {
         always {
