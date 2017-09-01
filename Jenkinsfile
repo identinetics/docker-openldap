@@ -94,6 +94,7 @@ pipeline {
                     ln -s conf.sh.default conf.sh
                     ln -s ldapenv.conf.default ldapenv.conf
                 else
+                    git pull
                     cd d-php-ldap
                 fi
                 ./dscripts/build.sh
