@@ -6,6 +6,11 @@ LABEL maintainer="Rainer Hörbe <r2h2@hoerbe.at>" \
       #didi_dir="https://raw.githubusercontent.com/identinetics/dscripts-test/master/didi" \
       capabilities='--cap-drop=all'
 
+# Enable proxy args if required by docker host
+#? ARG http_proxy
+#? ARG https_proxy
+#? ARG no_proxy
+
 ARG UID=343006
 ARG USERNAME=ldap
 ENV GID 0
