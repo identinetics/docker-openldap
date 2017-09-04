@@ -1,12 +1,5 @@
 pipeline {
     agent any
-    /* hard coded proxy settings for eduldap-dev@lfrz
-    ** environment {
-    **    http_proxy=http://proxy-lfrz.at:8080
-    **    https_proxy=http://proxy-lfrz.at:8080
-    **    no_proxy=127.0.0.1,localhost,*.vie01.local
-    ** }
-    **/
     stages {
         stage('Git pull + branch + submodule') {
             steps {
