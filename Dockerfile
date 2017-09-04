@@ -18,7 +18,14 @@ RUN yum -y update \
  && yum -y install python34-devel \
  && curl https://bootstrap.pypa.io/get-pip.py | python3.4 \
  && pip3 install ldap3 \
- && yum -y install openldap openldap-servers openldap-clients \
+ && yum clean all
+
+RUN mkdir -p /opt/rpms
+COPY openldap-2.4.45-13.10.twa.el7.centos/*.rpm /opt/rpms/
+RUN yum -y install /opt/rpms/openldap-2.4.*.centos.x86_64.rpm \
+ /opt/rpms/openldap-servers-2.4.*.centos.x86_64.rpm \
+ /opt/rpms/openldap-clients-2.4.*.centos.x86_64.rpm \ 
+ /opt/rpms/openldap-twcompare-2.4.*.centos.x86_64.rpm \
  && yum clean all
 
 # save system default ldap config and extend it with project-specific files
