@@ -1,0 +1,77 @@
+#
+# OID name space 1.3.6.1.4.1.50035 Identinetics IT-Services GmbH --
+# we use 1466 for the whole phonline stuff.
+
+# edushareAtPerson objectclass definition
+# designed to extend inetOrgPerson to complete an edushare user
+
+attributetype ( 1.3.6.1.4.1.50035.1466.2.3  NAME 'idnDistributionPassword'        DESC 'Passwort verschlüsselt'        EQUALITY caseIgnoreMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 SINGLE-VALUE )
+attributetype ( 1.3.6.1.4.1.50035.1466.2.5  NAME 'phonlineSchulkennzahl'          DESC 'Schulkennzahlen'               EQUALITY caseIgnoreMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 SINGLE-VALUE )
+attributetype ( 1.3.6.1.4.1.50035.1466.2.6  NAME 'phonlineSapPersnr'              DESC 'Pm_Sap_Personalnummer'         EQUALITY caseIgnoreMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 SINGLE-VALUE )
+attributetype ( 1.3.6.1.4.1.50035.1466.2.7  NAME 'phonlineBPK'                    DESC 'Bpk'                           EQUALITY caseIgnoreMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 SINGLE-VALUE )
+attributetype ( 1.3.6.1.4.1.50035.1466.2.8  NAME 'phonlineFunktionen'             DESC 'Funktionen'                    EQUALITY caseIgnoreMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 )
+attributetype ( 1.3.6.1.4.1.50035.1466.2.9  NAME 'phonlineAccStBediensteter'      DESC 'Account_Status_B'              EQUALITY caseIgnoreMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 SINGLE-VALUE )
+attributetype ( 1.3.6.1.4.1.50035.1466.2.10 NAME 'phonlineAccStStudent'           DESC 'Account_Status_St'             EQUALITY caseIgnoreMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 SINGLE-VALUE )
+attributetype ( 1.3.6.1.4.1.50035.1466.2.11 NAME 'phonlineAccStWeiterbildung'     DESC 'Account_Status_A'              EQUALITY caseIgnoreMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 SINGLE-VALUE )
+attributetype ( 1.3.6.1.4.1.50035.1466.2.13 NAME 'phonlineBenutzergruppe'         DESC 'Benutzergruppe'                EQUALITY caseIgnoreMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 SINGLE-VALUE )
+attributetype ( 1.3.6.1.4.1.50035.1466.2.14 NAME 'phonlineChipIDBediensteter'     DESC 'Chipid_B'                      EQUALITY caseIgnoreMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 SINGLE-VALUE )
+attributetype ( 1.3.6.1.4.1.50035.1466.2.15 NAME 'phonlineChipIDStudent'          DESC 'Chipid_St'                     EQUALITY caseIgnoreMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 SINGLE-VALUE )
+attributetype ( 1.3.6.1.4.1.50035.1466.2.16 NAME 'phonlineChipIDWeiterbildung'    DESC 'Chipid_A'                      EQUALITY caseIgnoreMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 SINGLE-VALUE )
+attributetype ( 1.3.6.1.4.1.50035.1466.2.17 NAME 'phonlineEmailBediensteter'      DESC 'Emailadresse_B'                EQUALITY caseIgnoreMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 SINGLE-VALUE )
+attributetype ( 1.3.6.1.4.1.50035.1466.2.18 NAME 'phonlineEmailStudent'           DESC 'Emailadresse_St'               EQUALITY caseIgnoreMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 SINGLE-VALUE )
+attributetype ( 1.3.6.1.4.1.50035.1466.2.19 NAME 'phonlineGebDatum'               DESC 'Geburtsdatum'                  EQUALITY caseIgnoreMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 SINGLE-VALUE )
+attributetype ( 1.3.6.1.4.1.50035.1466.2.20 NAME 'phonlineIdentNr'                DESC 'Ident_Nr'                      EQUALITY caseIgnoreMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 SINGLE-VALUE )
+attributetype ( 1.3.6.1.4.1.50035.1466.2.21 NAME 'phonlineMatrikelnummer'         DESC 'Matrikelnummer'                EQUALITY caseIgnoreMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 SINGLE-VALUE )
+attributetype ( 1.3.6.1.4.1.50035.1466.2.22 NAME 'phonlineMirfareIDBediensteter'  DESC 'Mirfareid_B'                   EQUALITY caseIgnoreMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 SINGLE-VALUE )
+attributetype ( 1.3.6.1.4.1.50035.1466.2.23 NAME 'phonlineMirfareIDStudent'       DESC 'Mirfareid_St'                  EQUALITY caseIgnoreMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 SINGLE-VALUE )
+attributetype ( 1.3.6.1.4.1.50035.1466.2.24 NAME 'phonlineMirfareIDWeiterbildung' DESC 'Mirfareid_A'                   EQUALITY caseIgnoreMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 SINGLE-VALUE )
+attributetype ( 1.3.6.1.4.1.50035.1466.2.25 NAME 'phonlineOrgEinheiten'           DESC 'Org_Einheiten'                 EQUALITY caseIgnoreMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 SINGLE-VALUE )
+attributetype ( 1.3.6.1.4.1.50035.1466.2.26 NAME 'phonlinePersonNr'               DESC 'Person_Nr'                     EQUALITY caseIgnoreMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 SINGLE-VALUE )
+attributetype ( 1.3.6.1.4.1.50035.1466.2.27 NAME 'phonlinePersonNrOBF'            DESC 'Person_Nr_Obf'                 EQUALITY caseIgnoreMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 SINGLE-VALUE )
+attributetype ( 1.3.6.1.4.1.50035.1466.2.28 NAME 'phonlinePersonNrOBFStudent'     DESC 'St_Person_Nr_Obf'              EQUALITY caseIgnoreMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 SINGLE-VALUE )
+attributetype ( 1.3.6.1.4.1.50035.1466.2.29 NAME 'phonlinePersonNrStudent'        DESC 'St_Person_Nr'                  EQUALITY caseIgnoreMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 SINGLE-VALUE )
+attributetype ( 1.3.6.1.4.1.50035.1466.2.30 NAME 'phonlineBediensteterAktiv'      DESC 'Activ_B_Person (X On Delete)'  EQUALITY caseIgnoreMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 SINGLE-VALUE )
+attributetype ( 1.3.6.1.4.1.50035.1466.2.31 NAME 'phonlineStudentAktiv'           DESC 'Activ_St_Person (X On Delete)' EQUALITY caseIgnoreMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 SINGLE-VALUE )
+attributetype ( 1.3.6.1.4.1.50035.1466.2.32 NAME 'phonlineWeiterbildungAktiv'     DESC 'Activ_A_Person (X On Delete)'  EQUALITY caseIgnoreMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 SINGLE-VALUE )
+attributetype ( 1.3.6.1.4.1.50035.1466.2.33 NAME 'phonlineUniqueId'               DESC 'Activ_St_Person (X On Delete)' EQUALITY caseIgnoreMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 SINGLE-VALUE )
+attributetype ( 1.3.6.1.4.1.50035.1466.2.34 NAME 'phonlineSchulkennzahlen'        DESC 'Schulkennzahlen'               EQUALITY caseIgnoreMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 )
+
+
+objectClass ( 1.3.6.1.4.1.50035.1466.1.1
+    NAME 'phonlinePerson'
+ 	AUXILIARY
+	MAY (
+        idnDistributionPassword        $
+        phonlineAccStBediensteter      $
+        phonlineAccStStudent           $
+        phonlineAccStWeiterbildung     $
+        phonlineBediensteterAktiv      $
+        phonlineBenutzergruppe         $
+        phonlineBPK                    $
+        phonlineChipIDBediensteter     $
+        phonlineChipIDStudent          $
+        phonlineChipIDWeiterbildung    $
+        phonlineEmailBediensteter      $
+        phonlineEmailStudent           $
+        phonlineFunktionen             $
+        phonlineGebDatum               $
+        phonlineIdentNr                $
+        phonlineMatrikelnummer         $
+        phonlineMirfareIDBediensteter  $
+        phonlineMirfareIDStudent       $
+        phonlineMirfareIDWeiterbildung $
+        phonlineOrgEinheiten           $
+        phonlinePersonNr               $
+        phonlinePersonNrOBF            $
+        phonlinePersonNrOBFStudent     $
+        phonlinePersonNrStudent        $
+        phonlineSapPersnr              $
+        phonlineSchulkennzahl          $
+        phonlineSchulkennzahlen        $
+        phonlineStudentAktiv           $
+        phonlineUniqueId               $
+        phonlineWeiterbildungAktiv     ) )
+
+
+
+

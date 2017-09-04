@@ -1,0 +1,17 @@
+attributetype ( 1.3.6.1.4.1.50035.1466.2.35
+                NAME 'etlTimestamp'
+                DESC 'ETL Timestamp last inbound sync (ISO8601 format YYYYMMDDhhmmssZ)'
+                SYNTAX 1.3.6.1.4.1.1466.115.121.1.24
+                EQUALITY generalizedTimeMatch ORDERING generalizedTimeOrderingMatch
+                SINGLE-VALUE )
+attributetype ( 1.3.6.1.4.1.50035.1466.2.36
+                NAME 'etdTimestamp'
+                DESC 'ETD Timestamp last outbound sync (ISO8601 format YYYYMDDhhmmssZ)'
+                EQUALITY generalizedTimeMatch ORDERING generalizedTimeOrderingMatch
+                SYNTAX 1.3.6.1.4.1.1466.115.121.1.24
+                SINGLE-VALUE )
+
+objectClass ( 1.3.6.1.4.1.50035.1466.1.2
+    NAME 'idnSyncstat'
+ 	AUXILIARY
+	MAY ( etlTimestamp $ etdTimeStamp ) )

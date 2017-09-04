@@ -1,0 +1,5 @@
+dn: cn=module{0},cn=config
+cn: module{0}
+objectClass: olcModuleList
+olcModulePath: /usr/lib64/openldap
+olcModuleLoad: {0}twcompare
