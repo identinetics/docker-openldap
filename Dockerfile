@@ -48,12 +48,12 @@ RUN mkdir -p /opt/sample_data/etc/openldap/data/
 #COPY install/conf/*.conf /etc/openldap/
 #COPY install/conf/*hosts /etc/openldap/
 #COPY install/conf/schema/*.schema /etc/openldap/schema/
-#COPY install/data/* /opt/sample_data/etc/openldap/data/
+COPY install/data/* /opt/sample_data/etc/openldap/data/
 #COPY install/conf/DB_CONFIG /var/db/
 COPY install/scripts/* /scripts/ 
 RUN chmod +x /scripts/*
-#COPY install/tests/* /tests/
-#RUN chmod +x  /tests/*
+COPY install/tests/* /tests/
+RUN chmod +x  /tests/*
 
 #RUN ln -s /etc/conf/slapd.conf /etc/openldap/slapd.conf 
 RUN mkdir /etc/conf && chmod 777 /etc/conf
