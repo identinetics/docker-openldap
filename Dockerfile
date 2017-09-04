@@ -25,6 +25,8 @@ RUN yum -y update \
  && pip3 install ldap3 \
  && yum clean all
 
+RUN yum -y install "perl(POSIX)" libtool-ltdl systemd-sysv tcp_wrappers-libs
+
 RUN mkdir -p /opt/rpms
 COPY openldap-2.4.45-13.10.twa.el7.centos/*.rpm /opt/rpms/
 RUN yum -y install /opt/rpms/openldap-2.4.*.centos.x86_64.rpm \
