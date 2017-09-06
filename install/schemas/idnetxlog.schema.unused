@@ -1,0 +1,40 @@
+
+## storage for the transfer daemons to save their state
+## and give some monitoring infos
+
+attributetype ( 1.3.6.1.4.1.50035.1466.2.37
+                NAME 'etxSyncTimestamp'
+                DESC 'Timestamp of the (beginning of the) run'
+                EQUALITY generalizedTimeMatch ORDERING generalizedTimeOrderingMatch
+                SYNTAX 1.3.6.1.4.1.1466.115.121.1.24
+                SINGLE-VALUE )
+attributetype ( 1.3.6.1.4.1.50035.1466.2.38
+                NAME 'etxSyncDuration'
+                DESC 'Duration of the run in seconds'
+                SYNTAX 1.3.6.1.4.1.1466.115.121.1.27
+                EQUALITY integerMatch ORDERING integerOrderingMatch
+                SINGLE-VALUE )
+attributetype ( 1.3.6.1.4.1.50035.1466.2.39
+                NAME 'etxSyncStatus'
+                DESC 'Status of the run'
+                SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+                EQUALITY caseIgnoreMatch
+                SINGLE-VALUE )
+attributetype ( 1.3.6.1.4.1.50035.1466.2.40
+                NAME 'etxSyncNumOfRecs'
+                DESC 'Number of records synced'
+                SYNTAX 1.3.6.1.4.1.1466.115.121.1.27
+                EQUALITY integerMatch ORDERING integerOrderingMatch
+                SINGLE-VALUE )
+
+objectClass (1.3.6.1.4.1.50035.1466.1.3
+   NAME 'idnEtxLog'
+        STRUCTURAL
+        MUST (
+        cn $
+        etxSyncTimestamp $
+        etxSyncStatus
+        )
+        MAY (
+        etxSyncDuration $
+        etxSyncNumOfRecs ) )

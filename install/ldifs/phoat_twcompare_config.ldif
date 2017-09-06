@@ -1,0 +1,6 @@
+dn: olcOverlay=twcompare,olcDatabase={2}mdb,cn=config
+objectclass: olcOverlayConfig
+objectclass: olcTwCompareConfig
+olcOverlay: twcompare
+olcTwCompareAttribute: etlTimestamp
+olcTwCompareAttribute: etdTimestamp
