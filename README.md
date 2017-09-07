@@ -8,7 +8,7 @@ Using the dscripts project this container provides some docker convenience for t
 
 ## Configuration
 
-1. Clone this repository and change into the directory 
+1. Clone this repository and change into the directory
 2. Copy conf.sh.default to conf.sh
 3. Run `git submodule update --init` and `cd dscripts && git checkout master && cd ..`
 4. Modify conf.sh (optional)
@@ -20,13 +20,11 @@ The project provides a couple of custom schemas as exampple. You may select one 
 related init, load and test scripts.
 
 ### Setup
+    # start slapd in daemon mode
+    dscripts/run.sh -p
 
-    dscripts/run.sh -ir /tests/init_sample_config_xxx.sh    # initialize sample xxx configuration, set root-pw
-    dscripts/run.sh -p # start slapd in daemon mode
-    dscripts/exec.sh   # start interactive shell
-        /tests/init_sample_data_xxx.sh    # initialize sample xxx data, see install/scripts/
-        /tests/dump_testuser.sh   
-        /tests/authn_testuser.sh   
+    # initialize and test  
+    dscripts/exec.sh -i bash /opt/init/openldap/scripts/setupXXXXXX.sh
 
 ### Operation
 
@@ -42,5 +40,3 @@ default ldap uid/gid configured at build time.
 ## Cluster Configuration
 
 See link:docs/cluster.adoc
-
- 

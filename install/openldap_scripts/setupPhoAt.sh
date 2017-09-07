@@ -11,29 +11,37 @@ ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/cosine.ldif
 ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/nis.ldif
 ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/inetorgperson.ldif
 
-/opt/init/openldap/scripts/root2me.sh /opt/init/openldap/ldifs/phoat_manager.ldif
-ldapmodify -Y EXTERNAL -H ldapi:/// -f /opt/init/openldap/ldifs/phoat_manager.ldif
-
-# our additional schemas
-
-ldapadd -Y EXTERNAL -H ldapi:/// -f  /opt/init/openldap/schemas/phonlineperson.ldif
-ldapadd -Y EXTERNAL -H ldapi:/// -f /opt/init/openldap/schemas/idnsyncstat.ldif
-
 # configure the mdb
 ldapmodify -Y EXTERNAL -H ldapi:/// -f /opt/init/openldap/ldifs/phoat_config.ldif
 
-# init compare overlay
+# frontend access restriction
+ldapmodify -Y EXTERNAL -H ldapi:/// -f /opt/init/openldap/ldifs/restrict_frontend.ldif
 
+
+# our additional schemas
+ldapadd -Y EXTERNAL -H ldapi:/// -f  /opt/init/openldap/schemas/phonlineperson.ldif
+ldapadd -Y EXTERNAL -H ldapi:/// -f /opt/init/openldap/schemas/idnsyncstat.ldif
+
+# indexes
+ldapmodify -Y EXTERNAL -H ldapi:/// -f /opt/init/openldap/ldifs/phoat_indexes.ldif
+
+
+# init compare overlay
 ldapadd -Y EXTERNAL -H ldapi:/// -f /opt/init/openldap/ldifs/twcompare_module.ldif
 ldapadd -Y EXTERNAL -H ldapi:/// -f /opt/init/openldap/ldifs/phoat_twcompare_config.ldif
 
-# PH Structure
+# manager access
+/opt/init/openldap/scripts/root2me.sh /opt/init/openldap/ldifs/phoat_manager.ldif
+ldapmodify -Y EXTERNAL -H ldapi:/// -f /opt/init/openldap/ldifs/phoat_manager.ldif
 
+# PH Structure
 ldapadd -h $SLAPDHOST -p $SLAPDPORT \
      -x -D "cn=admin,o=BMUKK" -w $ROOTPW \
      -c -f /opt/sample_data/etc/openldap/data/phoAt_init.ldif
 
+##
 ## after init is done, do some general tests:
+##
 
 ldapadd -h $SLAPDHOST -p $SLAPDPORT \
     -x -D "cn=admin,o=BMUKK" -w $ROOTPW \
