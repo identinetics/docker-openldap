@@ -1,5 +1,20 @@
 dn: olcDatabase={2}mdb,cn=config
 changetype: modify
+replace: olcDbMaxsize
+olcDbMaxsize: 53687091200
+
+dn: olcDatabase={2}mdb,cn=config
+changetype: modify
+replace: olcDbDirectory
+olcDbDirectory: /var/db
+
+dn: olcDatabase={2}mdb,cn=config
+changetype: modify
+replace: olcSuffix
+olcSuffix: o=BMUKK
+
+dn: olcDatabase={2}mdb,cn=config
+changetype: modify
 add: olcDbIndex
 olcDbIndex: dc,phonlineBPK,phonlineUniqueId eq,pres
-olcDbIndex: o,ou,uid eq,pres,sub
+olcDbIndex: o,uid eq,pres,sub
