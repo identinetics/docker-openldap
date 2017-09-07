@@ -19,6 +19,9 @@ ldapmodify -Y EXTERNAL -H ldapi:/// -f /opt/init/openldap/ldifs/phoat_manager.ld
 ldapadd -Y EXTERNAL -H ldapi:/// -f  /opt/init/openldap/schemas/phonlineperson.ldif
 ldapadd -Y EXTERNAL -H ldapi:/// -f /opt/init/openldap/schemas/idnsyncstat.ldif
 
+# adding some indexes
+ldapmodify -Y EXTERNAL -H ldapi:/// -f /opt/init/openldap/ldifs/phoat_indexes.ldif
+
 # compare overlay
 
 ldapadd -Y EXTERNAL -H ldapi:/// -f /opt/init/openldap/ldifs/twcompare_module.ldif
