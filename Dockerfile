@@ -28,10 +28,10 @@ RUN yum -y update \
 RUN yum -y install "perl(POSIX)" libtool-ltdl systemd-sysv tcp_wrappers-libs
 
 RUN mkdir -p /opt/rpms
-COPY openldap-2.4.45-13.10.twa.el7.centos/*.rpm /opt/rpms/
+COPY openldap-2.4.45/*.rpm /opt/rpms/
 RUN yum -y install /opt/rpms/openldap-2.4.*.centos.x86_64.rpm \
  /opt/rpms/openldap-servers-2.4.*.centos.x86_64.rpm \
- /opt/rpms/openldap-clients-2.4.*.centos.x86_64.rpm \ 
+ /opt/rpms/openldap-clients-2.4.*.centos.x86_64.rpm \
  /opt/rpms/openldap-twcompare-2.4.*.centos.x86_64.rpm \
  && yum clean all
 
@@ -52,12 +52,12 @@ RUN mkdir -p /opt/sample_data/etc/openldap/data/
 #COPY install/conf/schema/*.schema /etc/openldap/schema/
 COPY install/data/* /opt/sample_data/etc/openldap/data/
 #COPY install/conf/DB_CONFIG /var/db/
-COPY install/scripts/* /scripts/ 
+COPY install/scripts/* /scripts/
 RUN chmod +x /scripts/*
 COPY install/tests/* /tests/
 RUN chmod +x  /tests/*
 
-#RUN ln -s /etc/conf/slapd.conf /etc/openldap/slapd.conf 
+#RUN ln -s /etc/conf/slapd.conf /etc/openldap/slapd.conf
 RUN mkdir /etc/conf && chmod 777 /etc/conf
 
 ARG SLAPDPORT=8389
