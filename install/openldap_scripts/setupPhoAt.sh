@@ -19,27 +19,29 @@ ldapmodify -Y EXTERNAL -H ldapi:/// -f /opt/init/openldap/ldifs/restrict_fronten
 
 
 # our additional schemas
-
 ldapadd -Y EXTERNAL -H ldapi:/// -f  /opt/init/openldap/schemas/phonlineperson.ldif
 ldapadd -Y EXTERNAL -H ldapi:/// -f /opt/init/openldap/schemas/idnsyncstat.ldif
 
-# init compare overlay
+# indexes
+ldapmodify -Y EXTERNAL -H ldapi:/// -f /opt/init/openldap/ldifs/phoat_indexes.ldif
 
+
+# init compare overlay
 ldapadd -Y EXTERNAL -H ldapi:/// -f /opt/init/openldap/ldifs/twcompare_module.ldif
 ldapadd -Y EXTERNAL -H ldapi:/// -f /opt/init/openldap/ldifs/phoat_twcompare_config.ldif
 
 # manager access
-
 /opt/init/openldap/scripts/root2me.sh /opt/init/openldap/ldifs/phoat_manager.ldif
 ldapmodify -Y EXTERNAL -H ldapi:/// -f /opt/init/openldap/ldifs/phoat_manager.ldif
 
 # PH Structure
-
 ldapadd -h $SLAPDHOST -p $SLAPDPORT \
      -x -D "cn=admin,o=BMUKK" -w $ROOTPW \
      -c -f /opt/sample_data/etc/openldap/data/phoAt_init.ldif
 
+##
 ## after init is done, do some general tests:
+##
 
 ldapadd -h $SLAPDHOST -p $SLAPDPORT \
     -x -D "cn=admin,o=BMUKK" -w $ROOTPW \
