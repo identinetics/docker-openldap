@@ -2,3 +2,4 @@ dn: olcDatabase={2}mdb,cn=config
 changetype: modify
 add: olcDbIndex
 olcDbIndex: dc,phonlineBPK,phonlineUniqueId eq,pres
+olcDbIndex: o,ou,uid eq,pres,sub
