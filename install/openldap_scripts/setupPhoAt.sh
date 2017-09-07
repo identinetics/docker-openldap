@@ -19,10 +19,10 @@ ldapmodify -Y EXTERNAL -H ldapi:/// -f /opt/init/openldap/ldifs/phoat_manager.ld
 ldapadd -Y EXTERNAL -H ldapi:/// -f  /opt/init/openldap/schemas/phonlineperson.ldif
 ldapadd -Y EXTERNAL -H ldapi:/// -f /opt/init/openldap/schemas/idnsyncstat.ldif
 
-# adding some indexes
-ldapmodify -Y EXTERNAL -H ldapi:/// -f /opt/init/openldap/ldifs/phoat_indexes.ldif
+# configure the mdb
+ldapmodify -Y EXTERNAL -H ldapi:/// -f /opt/init/openldap/ldifs/phoat_config.ldif
 
-# compare overlay
+# init compare overlay
 
 ldapadd -Y EXTERNAL -H ldapi:/// -f /opt/init/openldap/ldifs/twcompare_module.ldif
 ldapadd -Y EXTERNAL -H ldapi:/// -f /opt/init/openldap/ldifs/phoat_twcompare_config.ldif
@@ -38,7 +38,7 @@ ldapadd -h $SLAPDHOST -p $SLAPDPORT \
 ldapadd -h $SLAPDHOST -p $SLAPDPORT \
     -x -D "cn=admin,o=BMUKK" -w $ROOTPW \
     -c -f /opt/sample_data/etc/openldap/data/phoAt_test.ldif
-    
+
 ldappasswd -h $SLAPDHOST -p $SLAPDPORT \
     -x -D "cn=admin,o=BMUKK" -w $ROOTPW \
     -s 'test' \
@@ -47,7 +47,7 @@ ldappasswd -h $SLAPDHOST -p $SLAPDPORT \
 ldapsearch -h localhost -p $SLAPDPORT \
     -x -D "cn=admin,o=BMUKK" -w $ROOTPW \
     -b "ou=ph08, o=BMUKK" -LLL 'cn=*'
-    
+
 ## now some overlay tests
 
 # returns 1
@@ -60,7 +60,7 @@ ldapsearch -h localhost -p $SLAPDPORT \
 
 ldapmodify -h $SLAPDHOST -p $SLAPDPORT \
     -x -D "cn=admin,o=BMUKK" -w $ROOTPW \
-    -c << EOF    
+    -c << EOF
 dn: cn=test.user1234567,ou=user,ou=ph08,o=BMUKK
 changetype: modify
 replace: etdTimestamp
@@ -77,7 +77,7 @@ ldapsearch -h localhost -p $SLAPDPORT \
 
 ldapmodify -h $SLAPDHOST -p $SLAPDPORT \
     -x -D "cn=admin,o=BMUKK" -w $ROOTPW \
-    -c << EOF    
+    -c << EOF
 dn: cn=test.user1234567,ou=user,ou=ph08,o=BMUKK
 changetype: modify
 replace: etdTimestamp
@@ -89,13 +89,13 @@ EOF
 ldapsearch -h localhost -p $SLAPDPORT \
     -x -D "cn=admin,o=BMUKK" -w $ROOTPW \
     -b "ou=ph08, o=BMUKK" -LLL 'cn=*' 'idnSyncDiff'
-    
+
 
 # set an etlTimestamp < etdTimestamp
-    
+
 ldapmodify -h $SLAPDHOST -p $SLAPDPORT \
     -x -D "cn=admin,o=BMUKK" -w $ROOTPW \
-    -c << EOF    
+    -c << EOF
 dn: cn=test.user1234567,ou=user,ou=ph08,o=BMUKK
 changetype: modify
 replace: etlTimestamp
@@ -107,11 +107,9 @@ EOF
 ldapsearch -h $SLAPDHOST -p $SLAPDPORT \
     -x -D "cn=admin,o=BMUKK" -w $ROOTPW \
     -b "ou=ph08, o=BMUKK" -LLL 'cn=*' 'idnSyncDiff'
-    
+
 # removing our test user
 
 ldapdelete -h $SLAPDHOST -p $SLAPDPORT \
     -x -D "cn=admin,o=BMUKK" -w $ROOTPW \
     'cn=test.user1234567, ou=user, ou=ph08, o=BMUKK'
-    
-   
