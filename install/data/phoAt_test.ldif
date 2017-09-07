@@ -17,3 +17,23 @@ phonlineMatrikelnummer: 987654
 phonlinePersonNr: 123456789
 phonlineUniqueId: 08154711
 etlTimestamp: 20170724132659Z
+
+# ---------- Test-User 2 -----------------
+dn: cn=test.user7654321,ou=user,ou=ph08,o=BMUKK
+objectClass: inetOrgPerson
+objectClass: phonlinePerson
+objectClass: idnSyncstat
+cn: test2.user7654321
+givenName: Test2
+sn: User
+phonlineSchulkennzahl: 101036
+phonlineSapPersnr: 4711
+phonlineBPK: j/NxdRxxxxxNyE9WhHdBSYuy3hA=
+phonlineFunktionen: Schulleitung
+phonlineEmailStudent: test.user123456@schule.at
+phonlineGebDatum:  1954-07-30
+phonlineIdentNr: 7654322
+phonlineMatrikelnummer: 987699
+phonlinePersonNr: 123456799
+phonlineUniqueId: 08154712
+etlTimestamp: 20170724132759Z
