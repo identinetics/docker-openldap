@@ -16,5 +16,5 @@ olcSuffix: o=BMUKK
 dn: olcDatabase={2}mdb,cn=config
 changetype: modify
 add: olcDbIndex
-olcDbIndex: dc,phonlineBPK,phonlineUniqueId eq,pres
+olcDbIndex: dc,phonlineUniqueId eq,pres
 olcDbIndex: o,uid eq,pres,sub
