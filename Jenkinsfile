@@ -39,11 +39,11 @@ pipeline {
                 ./dscripts/run.sh -p  # start slapd in background
                 sleep 2
                 echo 'Load initial tree data ..'
-                ./dscripts/exec.sh -i /opt/init/openldap/scripts/setupPhoAt.sh
+                ./dscripts/exec.sh -I /opt/init/openldap/scripts/setupPhoAt.sh
                 '''
                 sh '''
                 echo 'query data ..'
-                ./dscripts/exec.sh -i ldapsearch -Y EXTERNAL -H ldapi:/// -b cn=config
+                ./dscripts/exec.sh -I ldapsearch -Y EXTERNAL -H ldapi:/// -b cn=config
                 '''
             }
         }
