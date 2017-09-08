@@ -41,7 +41,6 @@ RUN mkdir -p /opt/init/openldap/schemas
 COPY install/ldifs/* /opt/init/openldap/ldifs/
 COPY install/schemas/* /opt/init/openldap/schemas/
 COPY install/openldap_scripts/* /opt/init/openldap/scripts/
-RUN chmod +x /opt/init/openldap/scripts/*
 RUN cd /opt/init/openldap/schemas \
  && /opt/init/openldap/scripts/schema2ldif.sh
 
@@ -75,6 +74,8 @@ RUN mkdir -p /var/log/openldap \
  && chown -R ldap:root /etc/openldap /var/db /var/log/openldap /opt/sample_data /etc/openldap /etc/conf /opt/init/openldap \
  && chmod 664 $(find   /etc/openldap /var/db /var/log/openldap /opt/init/openldap -type f) \
  && chmod 777 $(find   /etc/openldap /var/db /var/log/openldap /opt/init/openldap -type d)
+
+RUN chmod +x /opt/init/openldap/scripts/*
 
 VOLUME /var/db/
 # Note: We need the simple file 'slapd.conf' but the /etc/conf directory
