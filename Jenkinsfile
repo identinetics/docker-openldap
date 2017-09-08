@@ -66,31 +66,12 @@ pipeline {
         }
         stage('Test PHP client library') {
             steps {
-                sh '''
-                ./dscripts/exec.sh -I -u $randomuid ldapadd -Y EXTERNAL -H ldapi://%2Ftmp%2Fldapi -c <<EOF
-dn: cn=test.user1234567,ou=user,ou=ph08,o=BMUKK
-objectClass: inetOrgPerson
-objectClass: phonlinePerson
-objectClass: idnSyncstat
-cn: test.user1234567
-givenName: Test
-sn: User
-phonlineSchulkennzahl: 101036
-phonlineSapPersnr: 4711
-phonlineBPK: j/NxdRQhp+tNyE9WhHdBSYuy3hA=
-phonlineFunktionen: Schulleitung
-phonlineEmailStudent: test.user123456@schule.at
-phonlineGebDatum:  1954-07-31
-phonlineIdentNr: 123456
-phonlineMatrikelnummer: 987654
-phonlinePersonNr: 123456789
-phonlineUniqueId: 08154711
-etlTimestamp: 20170724132659Z
-EOF
-./dscripts/exec.sh -I -u $randomuid Y EXTERNAL -H ldapi://%2Ftmp%2Fldapi -s 'test' \
-'cn=test.user1234567, ou=user, ou=ph08, o=BMUKK'
-                '''
+              /* TODO: This job should learn to take care about itself
                 build job: 'd-php-ldap', parameters: [[$class: 'StringParameterValue', name: 'ldap_ip', value: '10.1.1.6']]
+              */
+              sh '''
+              echo "disabled"
+              '''
             }
         }
     }
