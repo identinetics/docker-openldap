@@ -19,7 +19,7 @@ RUN useradd --gid $GID --uid $UID ldap \
 
 RUN yum -y update \
  && yum -y install epel-release \
- && yum -y install curl iproute lsof net-tools \
+ && yum -y install curl iproute lsof net-tools less \
  && yum -y install python34-devel \
  && curl https://bootstrap.pypa.io/get-pip.py | python3.4 \
  && pip3 install ldap3 \

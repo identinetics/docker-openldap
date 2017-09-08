@@ -7,33 +7,33 @@
 # TODO: Exit with failure on test errors (best way for jenkins?)
 #
 
-ldapadd -Y EXTERNAL -H ldapi:/// -f /opt/init/openldap/ldifs/olcrootpw.ldif
-ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/cosine.ldif
-ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/nis.ldif
-ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/inetorgperson.ldif
+ldapadd -Y EXTERNAL -H ldapi://%2Ftmp%2Fldapi -f /opt/init/openldap/ldifs/olcrootpw.ldif
+ldapadd -Y EXTERNAL -H ldapi://%2Ftmp%2Fldapi -f /etc/openldap/schema/cosine.ldif
+ldapadd -Y EXTERNAL -H ldapi://%2Ftmp%2Fldapi -f /etc/openldap/schema/nis.ldif
+ldapadd -Y EXTERNAL -H ldapi://%2Ftmp%2Fldapi -f /etc/openldap/schema/inetorgperson.ldif
 
 # configure the mdb
-ldapmodify -Y EXTERNAL -H ldapi:/// -f /opt/init/openldap/ldifs/phoat_config.ldif
+ldapmodify -Y EXTERNAL -H ldapi://%2Ftmp%2Fldapi -f /opt/init/openldap/ldifs/phoat_config.ldif
 
 # frontend access restriction
-ldapmodify -Y EXTERNAL -H ldapi:/// -f /opt/init/openldap/ldifs/restrict_frontend.ldif
+ldapmodify -Y EXTERNAL -H ldapi://%2Ftmp%2Fldapi -f /opt/init/openldap/ldifs/restrict_frontend.ldif
 
 
 # our additional schemas
-ldapadd -Y EXTERNAL -H ldapi:/// -f  /opt/init/openldap/schemas/phonlineperson.ldif
-ldapadd -Y EXTERNAL -H ldapi:/// -f /opt/init/openldap/schemas/idnsyncstat.ldif
+ldapadd -Y EXTERNAL -H ldapi://%2Ftmp%2Fldapi -f  /opt/init/openldap/schemas/phonlineperson.ldif
+ldapadd -Y EXTERNAL -H ldapi://%2Ftmp%2Fldapi -f /opt/init/openldap/schemas/idnsyncstat.ldif
 
 # indexes
-ldapmodify -Y EXTERNAL -H ldapi:/// -f /opt/init/openldap/ldifs/phoat_indexes.ldif
+ldapmodify -Y EXTERNAL -H ldapi://%2Ftmp%2Fldapi -f /opt/init/openldap/ldifs/phoat_indexes.ldif
 
 
 # init compare overlay
-ldapadd -Y EXTERNAL -H ldapi:/// -f /opt/init/openldap/ldifs/twcompare_module.ldif
-ldapadd -Y EXTERNAL -H ldapi:/// -f /opt/init/openldap/ldifs/phoat_twcompare_config.ldif
+ldapadd -Y EXTERNAL -H ldapi://%2Ftmp%2Fldapi -f /opt/init/openldap/ldifs/twcompare_module.ldif
+ldapadd -Y EXTERNAL -H ldapi://%2Ftmp%2Fldapi -f /opt/init/openldap/ldifs/phoat_twcompare_config.ldif
 
 # manager access
 /opt/init/openldap/scripts/root2me.sh /opt/init/openldap/ldifs/phoat_manager.ldif
-ldapmodify -Y EXTERNAL -H ldapi:/// -f /opt/init/openldap/ldifs/phoat_manager.ldif
+ldapmodify -Y EXTERNAL -H ldapi://%2Ftmp%2Fldapi -f /opt/init/openldap/ldifs/phoat_manager.ldif
 
 # PH Structure
 ldapadd -h $SLAPDHOST -p $SLAPDPORT \
