@@ -39,7 +39,7 @@ pipeline {
                 ./dscripts/run.sh -p  # start slapd in background
                 sleep 2
                 echo 'Load initial tree data ..'
-                ./dscripts/exec.sh -i bash /opt/init/openldap/scripts/setupPhoAt.sh
+                ./dscripts/exec.sh -i /opt/init/openldap/scripts/setupPhoAt.sh
                 '''
                 sh '''
                 echo 'query data ..'
@@ -58,7 +58,7 @@ pipeline {
                 ./dscripts/run.sh -p -u $randomuid  # start slapd in background
                 sleep 2
                 echo 'Load initial tree data ..'
-                ./dscripts/exec.sh -I -u $randomuid bash /opt/init/openldap/scripts/setupPhoAt.sh
+                ./dscripts/exec.sh -I -u $randomuid /opt/init/openldap/scripts/setupPhoAt.sh
                 echo 'query data ..'
                 ./dscripts/exec.sh -I -u $randomuid ldapsearch -Y EXTERNAL -H ldapi:/// -b cn=config
                 '''
