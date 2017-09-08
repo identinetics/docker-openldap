@@ -118,7 +118,8 @@ ldapsearch -h $SLAPDHOST -p $SLAPDPORT \
     -b "ou=ph08, o=BMUKK" -LLL 'cn=*' 'idnSyncDiff'
 
 # removing our test user
+# TODO: ugly: Test user is needed by php library ... but shouldn't be there
 
-ldapdelete -h $SLAPDHOST -p $SLAPDPORT \
-    -x -D "cn=admin,o=BMUKK" -w $ROOTPW \
-    'cn=test.user1234567, ou=user, ou=ph08, o=BMUKK'
+#ldapdelete -h $SLAPDHOST -p $SLAPDPORT \
+#    -x -D "cn=admin,o=BMUKK" -w $ROOTPW \
+#    'cn=test.user1234567, ou=user, ou=ph08, o=BMUKK'
