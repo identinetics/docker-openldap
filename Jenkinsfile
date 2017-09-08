@@ -43,7 +43,7 @@ pipeline {
                 '''
                 sh '''
                 echo 'query data ..'
-                ./dscripts/exec.sh -I ldapsearch -Y EXTERNAL -H ldapi:/// -b cn=config
+                ./dscripts/exec.sh -I ldapsearch -Y EXTERNAL -H ldapi://%2Ftmp%2Fldapi -b cn=config
                 '''
             }
         }
@@ -60,7 +60,7 @@ pipeline {
                 echo 'Load initial tree data ..'
                 ./dscripts/exec.sh -I -u $randomuid /opt/init/openldap/scripts/setupPhoAt.sh
                 echo 'query data ..'
-                ./dscripts/exec.sh -I -u $randomuid ldapsearch -Y EXTERNAL -H ldapi:/// -b cn=config
+                ./dscripts/exec.sh -I -u $randomuid ldapsearch -Y EXTERNAL -H ldapi://%2Ftmp%2Fldapi -b cn=config
                 '''
             }
         }
