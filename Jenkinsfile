@@ -36,21 +36,14 @@ pipeline {
             steps {
                 sh '''
                 echo 'Configure & start slapd ..'
-                ./dscripts/run.sh -Ip /tests/init_sample_config_phoAt.sh
                 ./dscripts/run.sh -p  # start slapd in background
                 sleep 2
                 echo 'Load initial tree data ..'
-                ./dscripts/exec.sh -I /tests/init_dit_data_phoAt.sh
-                '''
-                sh '''
-                echo 'Load test data ..'
-                ./dscripts/exec.sh -I /tests/init_sample_data_phoAt.sh
+                ./dscripts/exec.sh -i bash /opt/init/openldap/scripts/setupPhoAt.sh
                 '''
                 sh '''
                 echo 'query data ..'
-                ./dscripts/exec.sh -I /tests/dump_testuser.sh
-                ./dscripts/exec.sh -I /tests/authn_testuser.sh
-                ./dscripts/exec.sh -I /tests/test1.sh
+                ./dscripts/exec.sh -i ldapsearch -Y EXTERNAL -H ldapi:/// -b cn=config
                 '''
             }
         }
@@ -62,17 +55,12 @@ pipeline {
                 ./dscripts/manage.sh rmvol 2>/dev/null || true
                 echo 'Configure & start slapd ..'
                 randomuid=9999999
-                ./dscripts/run.sh -Ip -u $randomuid /tests/init_sample_config_phoAt.sh
                 ./dscripts/run.sh -p -u $randomuid  # start slapd in background
                 sleep 2
                 echo 'Load initial tree data ..'
-                ./dscripts/exec.sh -I -u $randomuid /tests/init_dit_data_phoAt.sh
-                echo 'Load test data ..'
-                ./dscripts/exec.sh -I -u $randomuid /tests/init_sample_data_phoAt.sh
+                ./dscripts/exec.sh -I -u $randomuid bash /opt/init/openldap/scripts/setupPhoAt.sh
                 echo 'query data ..'
-                ./dscripts/exec.sh -I -u $randomuid /tests/dump_testuser.sh
-                ./dscripts/exec.sh -I -u $randomuid /tests/authn_testuser.sh
-                ./dscripts/exec.sh -I -u $randomuid /tests/test1.sh
+                ./dscripts/exec.sh -I -u $randomuid ldapsearch -Y EXTERNAL -H ldapi:/// -b cn=config
                 '''
             }
         }
