@@ -42,6 +42,7 @@ COPY install/ldifs/* /opt/init/openldap/ldifs/
 COPY install/schemas/* /opt/init/openldap/schemas/
 COPY install/openldap_scripts/* /opt/init/openldap/scripts/
 #RUN chmod +x /opt/init/openldap/scripts/*
+RUN chmod +x /opt/init/openldap/scripts/*
 RUN cd /opt/init/openldap/schemas \
  && /opt/init/openldap/scripts/schema2ldif.sh
 
