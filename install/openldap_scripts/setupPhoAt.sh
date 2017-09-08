@@ -1,3 +1,4 @@
+#!/bin/sh
 ##
 # Initialize the LDAP
 #

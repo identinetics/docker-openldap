@@ -39,7 +39,6 @@ pipeline {
                 ./dscripts/run.sh -p  # start slapd in background
                 sleep 2
                 echo 'Load initial tree data ..'
-                ./dscripts/exec.sh -I ls
                 ./dscripts/exec.sh -I /opt/init/openldap/scripts/setupPhoAt.sh
                 '''
                 sh '''
