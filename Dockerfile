@@ -42,8 +42,8 @@ COPY install/ldifs/* /opt/init/openldap/ldifs/
 COPY install/schemas/* /opt/init/openldap/schemas/
 COPY install/openldap_scripts/* /opt/init/openldap/scripts/
 #RUN chmod +x /opt/init/openldap/scripts/*
-#RUN cd /opt/init/openldap/schemas \
-# && /opt/init/openldap/scripts/schema2ldif.sh
+RUN cd /opt/init/openldap/schemas \
+ && /opt/init/openldap/scripts/schema2ldif.sh
 
 # save system default ldap config and extend it with project-specific files
 RUN mkdir -p /opt/sample_data/etc/openldap/data/
