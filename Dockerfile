@@ -72,10 +72,10 @@ ENV DEBUGLEVEL conns,config,stats
 # UID-Bug in openshift. This should be closed down to at least set the
 # GID to 0 so that we can set this to 770 instead!
 RUN mkdir -p /var/log/openldap \
- && chown -R ldap:root /etc/openldap /var/db /var/log/openldap /opt/sample_data /etc/openldap /etc/conf \
- && chmod 664 $(find   /etc/openldap /var/db /var/log/openldap -type f) \
- && chmod 777 $(find   /etc/openldap /var/db /var/log/openldap -type d)
-RUN chown -R ldap:root /opt/init/openldap
+ && chown -R ldap:root /etc/openldap /var/db /var/log/openldap /opt/sample_data /etc/openldap /etc/conf /opt/init/openldap \
+ && chmod 664 $(find   /etc/openldap /var/db /var/log/openldap /opt/init/openldap -type f) \
+ && chmod 777 $(find   /etc/openldap /var/db /var/log/openldap /opt/init/openldap -type d)
+
 VOLUME /var/db/
 # Note: We need the simple file 'slapd.conf' but the /etc/conf directory
 # is empty so that OpenShift can safely map the whole directory.
