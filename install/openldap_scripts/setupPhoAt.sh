@@ -40,6 +40,12 @@ ldapadd -h $SLAPDHOST -p $SLAPDPORT \
      -x -D "cn=admin,o=BMUKK" -w $ROOTPW \
      -c -f /opt/sample_data/etc/openldap/data/phoAt_init.ldif
 
+# bmb read access
+ldapadd -h $SLAPDHOST -p $SLAPDPORT \
+     -x -D "cn=admin,o=BMUKK" -w $ROOTPW \
+     -c -f /opt/init/openldap/ldifs/bmbreader.ldif
+
+
 ##
 ## after init is done, do some general tests:
 ##

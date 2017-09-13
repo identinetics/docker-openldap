@@ -1,5 +1,5 @@
 # show config
-dscripts/exec.sh -i ldapsearch -Y EXTERNAL -H ldapi:/// -b cn=config
+dscripts/exec.sh -i ldapsearch -Y EXTERNAL -H ldapi://%2Ftmp%2Fldapi -b cn=config
 
 # show idnSyncDiff
-dscripts/exec.sh -i ldapsearch -Y EXTERNAL -H ldapi:/// -b o=BMUKK "(objectclass=phonlinePerson)" "+"
+dscripts/exec.sh -i ldapsearch -Y EXTERNAL -H ldapi://%2Ftmp%2Fldapi -b o=BMUKK "(objectclass=phonlinePerson)" "+"

@@ -1,0 +1,10 @@
+dn: ou=readers,o=BMUKK
+objectClass: organizationalUnit
+ou: readers
+adding new entry "ou=readers,o=BMUKK"
+
+dn: cn=bmb_reader,ou=readers,o=BMUKK
+cn: bmb_reader
+objectClass: simpleSecurityObject
+objectClass: organizationalRole
+userPassword: {SSHA}7DKgOKoJzhsWiSQDsZr8FtsHz9qTOWAK
