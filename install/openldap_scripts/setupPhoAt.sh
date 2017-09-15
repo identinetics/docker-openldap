@@ -49,7 +49,7 @@ ldapadd -h $SLAPDHOST -p $SLAPDPORT \
 # patch 0
 
 ldapmodify -Y EXTERNAL -H ldapi://%2Ftmp%2Fldapi -f /opt/init/openldap/ldifs/p0_access.ldif
-ldapmodify -h $SLAPDHOST -p $SLAPDPORT -x -D "cn=admin,o=BMUKK" -w $ROOTPW \
+ldapadd -h $SLAPDHOST -p $SLAPDPORT -x -D "cn=admin,o=BMUKK" -w $ROOTPW \
     -f  /opt/init/openldap/ldifs/p0_monitoring.0.ldif
 ldapmodify -Y EXTERNAL -H ldapi://%2Ftmp%2Fldapi -f /opt/init/openldap/ldifs/p0_monitoring.1.ldif
 
