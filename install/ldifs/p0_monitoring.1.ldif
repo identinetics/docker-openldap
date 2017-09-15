@@ -1,0 +1,7 @@
+# patch 0 monitoring access
+# applywith: root
+
+dn: olcDatabase={1}monitor,cn=config
+changetype: modify
+replace: olcAccess
+olcAccess: {0}to * by dn="cn=monitoring,ou=readers,o=BMUKK" read by dn="cn=admin,o=BMUKK" read

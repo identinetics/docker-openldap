@@ -1,0 +1,10 @@
+# patch0 access restrictions
+# applywith: root
+
+dn: olcDatabase={2}mdb,cn=config
+changetype: modify
+delete: olcAccess
+olcAccess: {2}
+-
+add: olcAccess
+olcAccess: {2}to * by dn="cn=bmb_reader,ou=readers,o=BMUKK" read by self read by self read by * auth break

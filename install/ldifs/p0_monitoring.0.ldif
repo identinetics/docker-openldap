@@ -1,0 +1,8 @@
+# patch 0 monitoring access
+# applywith: admin
+
+dn: cn=monitoring,ou=readers,o=BMUKK
+cn: monitoring
+objectClass: simpleSecurityObject
+objectClass: organizationalRole
+userPassword: ChAnGeMe

@@ -3,3 +3,5 @@ dscripts/exec.sh -i ldapsearch -Y EXTERNAL -H ldapi://%2Ftmp%2Fldapi -b cn=confi
 
 # show idnSyncDiff
 dscripts/exec.sh -i ldapsearch -Y EXTERNAL -H ldapi://%2Ftmp%2Fldapi -b o=BMUKK "(objectclass=phonlinePerson)" "+"
+
+ldap

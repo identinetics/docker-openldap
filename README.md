@@ -14,6 +14,12 @@ Using the dscripts project this container provides some docker convenience for t
 4. Modify conf.sh (optional)
 5. dscripts/build.sh  # For local images only
 
+## Updating an older container
+
+Configuration changes are organized in patches. Take a look into the
+setupXXXX.sh file, find the patches you want/have to apply and execute
+them in the container with dscripts/exec.sh -i.
+
 ## Usage
 
 The project provides a couple of custom schemas as exampple. You may select one and run the
