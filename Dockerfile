@@ -18,7 +18,7 @@ RUN useradd --gid $GID --uid $UID ldap \
  && chown $UID:$GID /run
 
 RUN mkdir -p /opt/init/python
-COPY install/python/* /opt/init/python
+COPY install/python/* /opt/init/python/
 
 RUN yum -y update \
  && yum -y install epel-release \
