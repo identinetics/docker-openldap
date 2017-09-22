@@ -2,7 +2,7 @@
 
 import os
 
-from classes.setup import Setup()
+from classes.setup import Setup
 
 DB_PATH='/var/db/data.mdb'
 
