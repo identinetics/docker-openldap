@@ -17,12 +17,16 @@ ENV GID 0
 RUN useradd --gid $GID --uid $UID ldap \
  && chown $UID:$GID /run
 
+RUN mkdir -p /opt/init/python
+COPY install/python/* /opt/init/python
+
 RUN yum -y update \
  && yum -y install epel-release \
  && yum -y install curl iproute lsof net-tools less \
  && yum -y install python34-devel \
  && curl https://bootstrap.pypa.io/get-pip.py | python3.4 \
- && pip3 install ldap3 \
+ && pip3 install --upgrade pip \
+ && pip3 install -r /opt/init/python/requirements.txt \
  && yum clean all
 
 RUN yum -y install "perl(POSIX)" libtool-ltdl systemd-sysv tcp_wrappers-libs

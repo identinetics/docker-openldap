@@ -1,0 +1,8 @@
+# set root password
+# applywith: add
+# user: root
+
+dn: olcDatabase={0}config,cn=config
+changetype: modify
+add: olcRootPW
+olcRootPW: {{ olcRootPw }}
