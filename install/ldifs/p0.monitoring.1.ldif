@@ -1,5 +1,5 @@
 # patch 0 monitoring access
-# applywith: root
+# modifywith: root
 
 dn: olcDatabase={1}monitor,cn=config
 changetype: modify

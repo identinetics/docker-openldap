@@ -1,0 +1,8 @@
+# adding patchlevel tracking
+# modifywith: admin
+
+dn: o=BMUKK
+changetype: modify
+add: objectClass
+objectClass: patchlevel
+modifying entry "o=BMUKK"

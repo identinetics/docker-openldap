@@ -1,0 +1,22 @@
+# adding idndeleted
+# modifywith: root
+
+dn: cn=phonlineperson,cn=schema,cn=config
+changetype: modify
+add: olcAttributeTypes
+olcAttributeTypes: (1.3.6.1.4.1.50035.1466.2.37 NAME 'idnDeleted' DESC 'Entry is deleted' EQUALITY booleanMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.7 SINGLE-VALUE)
+
+dn: cn=phonlineperson,cn=schema,cn=config
+changetype: modify
+replace: olcObjectClasses
+olcObjectClasses: {0}( 1.3.6.1.4.1.50035.1466.1.1 NAME 'phonlinePerson' AUXILI
+ ARY MAY ( idnDistributionPassword $ phonlineAccStBediensteter $ phonlineAccSt
+ Student $ phonlineAccStWeiterbildung $ phonlineBediensteterAktiv $ phonlineBe
+ nutzergruppe $ phonlineBPK $ phonlineChipIDBediensteter $ phonlineChipIDStude
+ nt $ phonlineChipIDWeiterbildung $ phonlineEmailBediensteter $ phonlineEmailS
+ tudent $ phonlineFunktionen $ phonlineGebDatum $ phonlineIdentNr $ phonlineMa
+ trikelnummer $ phonlineMirfareIDBediensteter $ phonlineMirfareIDStudent $ pho
+ nlineMirfareIDWeiterbildung $ phonlineOrgEinheiten $ phonlinePersonNr $ phonl
+ inePersonNrOBF $ phonlinePersonNrOBFStudent $ phonlinePersonNrStudent $ phonl
+ ineSapPersnr $ phonlineSchulkennzahl $ phonlineSchulkennzahlen $ phonlineStud
+ entAktiv $ phonlineUniqueId $ phonlineWeiterbildungAktiv $ idnDeleted ))

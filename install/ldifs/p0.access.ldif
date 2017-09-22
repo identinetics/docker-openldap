@@ -1,5 +1,5 @@
 # patch0 access restrictions
-# applywith: root
+# addwith: root
 
 dn: olcDatabase={2}mdb,cn=config
 changetype: modify

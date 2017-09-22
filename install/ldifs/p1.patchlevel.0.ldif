@@ -1,0 +1,9 @@
+# adding patchlevel tracking
+# addwith: root
+
+dn: cn=patchlevel,cn=schema,cn=config
+objectClass: olcSchemaConfig
+cn: patchlevel
+olcAttributeTypes: (1.3.6.1.4.1.50035.1466.5.42 NAME 'patchlevel' EQUALITY integerMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.27 )
+olcObjectClasses: (1.3.6.1.4.1.50035.1466.5 NAME 'patchlevel' AUXILIARY MAY (patchlevel))
+

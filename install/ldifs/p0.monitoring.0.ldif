@@ -1,5 +1,5 @@
 # patch 0 monitoring access
-# applywith: admin
+# addwith: admin
 
 dn: cn=monitoring,ou=readers,o=BMUKK
 cn: monitoring
