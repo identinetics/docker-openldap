@@ -19,7 +19,8 @@ class MoveDirectory(object):
         with open(path, "r") as file_in:
             for line in file_in:
                 if not line.startswith('#'):
-                    line = re.sub(r'^olcDbDirectory: .*', 'olcDbDirectory: /var/db', line)
+                    replace = 'olcDbDirectory: {}'.format(target)
+                    line = re.sub(r'^olcDbDirectory: .*', replace, line)
 
                     lines.append(line)
 
