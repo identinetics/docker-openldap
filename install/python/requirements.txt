@@ -1,4 +1,5 @@
 Jinja2==2.9.6
 ldap3==2.3
+ldif3==3.2.2
 MarkupSafe==1.0
 pyasn1==0.3.6
