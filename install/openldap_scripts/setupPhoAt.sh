@@ -63,10 +63,10 @@ ldapmodify -h $SLAPDHOST -p $SLAPDPORT -x -D "cn=admin,o=BMUKK" -w $ROOTPW \
 
 # patch 2
 
-#ldapmodify -Y EXTERNAL -H ldapi://%2Ftmp%2Fldapi -f /opt/init/openldap/ldifs/p2.idndeleted.0.ldif
-#ldapmodify -Y EXTERNAL -H ldapi://%2Ftmp%2Fldapi -f /opt/init/openldap/ldifs/p2.idndeleted.1.ldif
-#ldapmodify -h $SLAPDHOST -p $SLAPDPORT -x -D "cn=admin,o=BMUKK" -w $ROOTPW \
-#   -f  /opt/init/openldap/ldifs/p2.patchlevel.2.ldif
+ldapmodify -Y EXTERNAL -H ldapi://%2Ftmp%2Fldapi -f /opt/init/openldap/ldifs/p2.idndeleted.0.ldif
+ldapmodify -Y EXTERNAL -H ldapi://%2Ftmp%2Fldapi -f /opt/init/openldap/ldifs/p2.idndeleted.1.ldif
+ldapmodify -h $SLAPDHOST -p $SLAPDPORT -x -D "cn=admin,o=BMUKK" -w $ROOTPW \
+   -f  /opt/init/openldap/ldifs/p2.patchlevel.2.ldif
 
 ##
 ## after init is done, do some general tests:
