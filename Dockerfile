@@ -89,6 +89,7 @@ VOLUME /var/db/
 # is empty so that OpenShift can safely map the whole directory.
 
 ### LFRZ - ConfigMap Volume
+RUN chown -R ldap:root /etc/conf
 RUN mkdir /etc/conf && chmod 777 /etc/conf
 VOLUME /etc/conf
 
