@@ -1,7 +1,7 @@
 # adding idndeleted
 # modifywith: root
 
-dn: cn=phonlineperson,cn=schema,cn=config
+dn: cn={4}phonlineperson,cn=schema,cn=config
 changetype: modify
 replace: olcObjectClasses
 olcObjectClasses: {0}( 1.3.6.1.4.1.50035.1466.1.1 NAME 'phonlinePerson' AUXILI

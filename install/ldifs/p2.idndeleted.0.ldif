@@ -1,7 +1,7 @@
 # adding idndeleted
 # modifywith: root
 
-dn: cn=phonlineperson,cn=schema,cn=config
+dn: cn={4}phonlineperson,cn=schema,cn=config
 changetype: modify
 add: olcAttributeTypes
 olcAttributeTypes: (1.3.6.1.4.1.50035.1466.2.37 NAME 'idnDeleted' DESC 'Entry is deleted' EQUALITY booleanMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.7 SINGLE-VALUE)
