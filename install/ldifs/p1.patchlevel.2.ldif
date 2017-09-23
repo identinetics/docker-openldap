@@ -5,4 +5,3 @@ dn: o=BMUKK
 changetype: modify
 replace: patchlevel
 patchlevel: 1
-modifying entry "o=BMUKK"
