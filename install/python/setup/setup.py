@@ -6,7 +6,7 @@ from classes.setup import Setup
 DB_PATH='/var/db/data.mdb'
 
 PW_PATH = '/etc/conf/passwords'
-PW_PATH = 'test_passwords'
+#PW_PATH = 'test_passwords'
 
 if not os.path.isfile(DB_PATH):
 
