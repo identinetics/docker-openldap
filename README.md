@@ -80,7 +80,7 @@ slappasswd  -h '{CRYPT}' -c '$6$.16s'
 
 ```
 ldapmodify -h $SLAPDHOST -p $SLAPDPORT \
--D "cn=admin,o=BMUKK" -w <your new password>   
+-D "cn=admin,o=BMUKK" -w <your new admin password>   
 dn: cn=bmb_reader,ou=readers,o=BMUKK
 changetype: modify
 replace: userPassword  
@@ -95,7 +95,7 @@ slappasswd  -h '{CRYPT}' -c '$6$.16s'
 2. Run ldapmodify and copy the ldif below in its stdin:
 ```
 ldapmodify -h $SLAPDHOST -p $SLAPDPORT \
--D "cn=admin,o=BMUKK" -w <your new password>   
+-D "cn=admin,o=BMUKK" -w <your new admin password>   
 dn: cn=monitoring,ou=readers,o=BMUKK
 changetype: modify
 replace: userPassword  
