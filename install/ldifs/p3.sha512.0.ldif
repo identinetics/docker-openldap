@@ -1,0 +1,10 @@
+# adding sha512
+# modifywith: root
+
+dn: cn=config
+changetype: modify
+add: olcPasswordCryptSaltFormat
+olcPasswordCryptSaltFormat: $6$%.16s
+-
+add: olcPasswordHash
+olcPasswordHash: {CRYPT}
