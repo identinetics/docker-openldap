@@ -42,18 +42,18 @@ dscripts/exec.sh -i bash
 
 #### Change the config root password:
 
-  1. Generate a new password hash using
+1. Generate a new password hash using
+```
+slappasswd  -h '{CRYPT}' -c '$6$.16s'
+```
+2. Run ldapmodify and copy the ldif below in its stdin:
   ```
-  slappasswd  -h '{CRYPT}' -c '$6$.16s'
-  ```
-  2. Run ldapmodify and copy the ldif below in its stdin:
-    ```
-    ldapmodify -Y EXTERNAL -H ldapi://%2Ftmp%2Fldapi  
-  dn: olcDatabase={0}config,cn=config
-  changetype: modify
-  replace: olcRootPW
-  olcRootPW: <the hash from slappasswd>
-  ```
+  ldapmodify -Y EXTERNAL -H ldapi://%2Ftmp%2Fldapi  
+dn: olcDatabase={0}config,cn=config
+changetype: modify
+replace: olcRootPW
+olcRootPW: <the hash from slappasswd>
+```
 
 #### Change the admin password:
 1. Generate a new password hash using
