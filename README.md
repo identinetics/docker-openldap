@@ -32,6 +32,68 @@ related init, load and test scripts.
     # initialize and test  
     dscripts/exec.sh -i bash /opt/init/openldap/scripts/setupXXXXXX.sh
 
+### Change default passwords
+    # start a shell
+    dscripts/exec.sh -i bash
+
+  In this container shell:
+
+#### Change the config root password:
+
+  1. Generate a new password hash using
+  ```slappasswd  -h '{CRYPT}' -c '$6$.16s'
+  ```
+  2. Run ldapmodify and copy the ldif below in its stdin:
+    ```
+    ldapmodify -Y EXTERNAL -H ldapi://%2Ftmp%2Fldapi  
+  dn: olcDatabase={0}config,cn=config
+  changetype: modify
+  replace: olcRootPW
+  olcRootPW: <the hash from slappasswd>
+  ```
+
+#### Change the admin password:
+1. Generate a new password hash using
+```slappasswd  -h '{CRYPT}' -c '$6$.16s'
+```
+2. Run ldapmodify and copy the ldif below in its stdin:
+  ```
+  ldapmodify -Y EXTERNAL -H ldapi://%2Ftmp%2Fldapi  
+  dn: olcDatabase={2}mdb,cn=config
+changetype: modify
+replace: olcRootPW
+olcRootPW: <the hash from slappasswd>
+```
+
+#### Change the bmbreader password:
+1. Generate a new password hash using
+```slappasswd  -h '{CRYPT}' -c '$6$.16s'
+```
+2. Run ldapmodify and copy the ldif below in its stdin:
+```
+ ldapmodify -h $SLAPDHOST -p $SLAPDPORT \
+  -D "cn=admin,o=BMUKK" -w <your new password>   
+dn: cn=bmb_reader,ou=readers,o=BMUKK
+changetype: modify
+replace: userPassword  
+userPassword: <the hash from slappasswd>
+```
+
+#### Change the monitoring password:
+1. Generate a new password hash using
+```slappasswd  -h '{CRYPT}' -c '$6$.16s'
+```
+2. Run ldapmodify and copy the ldif below in its stdin:
+```
+ ldapmodify -h $SLAPDHOST -p $SLAPDPORT \
+  -D "cn=admin,o=BMUKK" -w <your new password>   
+  dn: cn=monitoring,ou=readers,o=BMUKK
+changetype: modify
+replace: userPassword  
+userPassword: <the hash from slappasswd>
+```
+
+
 ### Operation
 
     cd <project root>
