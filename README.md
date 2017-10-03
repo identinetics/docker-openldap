@@ -33,12 +33,12 @@ related init, load and test scripts.
     dscripts/exec.sh -i bash /opt/init/openldap/scripts/setupXXXXXX.sh
 
 ### Change default passwords
-    You can change the passwords by using slappasswd and ldapmodify from a container shell. As the container has this Passwords in its environment, you might want to restart your container afterwards with a new configuration.
+You can change the passwords by using slappasswd and ldapmodify from a container shell. As the container has this Passwords in its environment, you might want to restart your container afterwards with a new configuration.
 
-    To get a container shell:
-    ```
-    dscripts/exec.sh -i bash
-    ```
+To get a container shell:
+```
+dscripts/exec.sh -i bash
+```
 
 #### Change the config root password:
 
