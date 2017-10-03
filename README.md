@@ -71,10 +71,13 @@ olcRootPW: <the hash from slappasswd>
 
 #### Change the bmbreader password:
 1. Generate a new password hash using
+
 ```
 slappasswd  -h '{CRYPT}' -c '$6$.16s'
 ```
+
 2. Run ldapmodify and copy the ldif below in its stdin:
+
 ```
  ldapmodify -h $SLAPDHOST -p $SLAPDPORT \
   -D "cn=admin,o=BMUKK" -w <your new password>   
