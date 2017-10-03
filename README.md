@@ -43,7 +43,8 @@ dscripts/exec.sh -i bash
 #### Change the config root password:
 
   1. Generate a new password hash using
-  ```slappasswd  -h '{CRYPT}' -c '$6$.16s'
+  ```
+  slappasswd  -h '{CRYPT}' -c '$6$.16s'
   ```
   2. Run ldapmodify and copy the ldif below in its stdin:
     ```
@@ -56,7 +57,8 @@ dscripts/exec.sh -i bash
 
 #### Change the admin password:
 1. Generate a new password hash using
-```slappasswd  -h '{CRYPT}' -c '$6$.16s'
+```
+slappasswd  -h '{CRYPT}' -c '$6$.16s'
 ```
 2. Run ldapmodify and copy the ldif below in its stdin:
   ```
@@ -69,7 +71,8 @@ olcRootPW: <the hash from slappasswd>
 
 #### Change the bmbreader password:
 1. Generate a new password hash using
-```slappasswd  -h '{CRYPT}' -c '$6$.16s'
+```
+slappasswd  -h '{CRYPT}' -c '$6$.16s'
 ```
 2. Run ldapmodify and copy the ldif below in its stdin:
 ```
@@ -83,7 +86,8 @@ userPassword: <the hash from slappasswd>
 
 #### Change the monitoring password:
 1. Generate a new password hash using
-```slappasswd  -h '{CRYPT}' -c '$6$.16s'
+```
+slappasswd  -h '{CRYPT}' -c '$6$.16s'
 ```
 2. Run ldapmodify and copy the ldif below in its stdin:
 ```
