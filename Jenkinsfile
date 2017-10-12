@@ -1,5 +1,6 @@
 pipeline {
     agent any
+      stages {
         stage('docker cleanup') {
             steps {
                 sh './dscripts/manage.sh rm 2>/dev/null || true'
