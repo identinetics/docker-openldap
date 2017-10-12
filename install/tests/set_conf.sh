@@ -8,6 +8,6 @@ export ROOTDN='cn=admin,o=BMUKK'
 export ROOTPW='changeit'
 export BASEDN='o=BMUKK'
 export TESTUSERCN='cn=test.user1234567'
-export TESTUSERDN="$TESTUSERCN,ou=user,ou=ph99,$BASEDN"
+export TESTUSERDN="$TESTUSERCN,ou=user,ou=ph08,$BASEDN"
 export TESTUSERPW='test'
 

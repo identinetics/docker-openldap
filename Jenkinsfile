@@ -29,8 +29,8 @@ pipeline {
                 sh '''
                 echo 'query data via domain socket and external authentication ..'
                 ./dscripts/exec.sh -I ldapsearch -Y EXTERNAL -H ldapi://%2Ftmp%2Fldapi -b cn=config
-                echo 'Test Python3 ldap3 lib, connect via TCP socket ..'
-                ./dscripts/exec.sh -I /tests/test1.sh
+                #echo 'Test Python3 ldap3 lib, connect via TCP socket ..'
+                #./dscripts/exec.sh -I /tests/test1.sh
                 '''
             }
         }
