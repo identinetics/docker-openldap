@@ -1,13 +1,11 @@
 #!/usr/bin/env bash
 
-rootdn=$(grep ^rootdn /etc/openldap/slapd.conf | awk {'print $2'} | tr -d '"')
-suffix=$(grep ^suffix /etc/openldap/slapd.conf | awk {'print $2'} | tr -d '"')
+SCRIPTDIR=$(cd $(dirname $BASH_SOURCE[0]) && pwd)
+source $SCRIPTDIR/set_conf.sh
 
-ldapsearch -h localhost -p $SLAPDPORT \
-    -x -D $rootdn -w $ROOTPW \
-    -b $suffix -LLL 'cn=*'
+ldapsearch -h localhost -p $SLAPDPORT -x -D $ROOTDN -w $ROOTPW -b $BASEDN -LLL "cn=$TESTUSERCN"
 
 # sample commands
-# ldapsearch -h localhost -p $SLAPDPORT -x -D $rootdn -w $ROOTPW -b $suffix -LLL 'uid=test.user1234567'
-# ldapmodify -h localhost -p $SLAPDPORT -x -D $rootdn -w $ROOTPW -c -f /tmp/x.ldif
-# ldapdelete -h localhost -p $SLAPDPORT -x -D $rootdn -w $ROOTPW uid=test.user2_adam,ou=user,ou=ph08,o=BMUKK
+# ldapsearch -h localhost -p $SLAPDPORT -x -D $ROOTDN -w $ROOTPW -b $BASEDN -LLL 'uid=test.user'
+# ldapmodify -h localhost -p $SLAPDPORT -x -D $ROOTDN -w $ROOTPW -c -f /tmp/x.ldif
+# ldapdelete -h localhost -p $SLAPDPORT -x -D $ROOTDN -w $ROOTPW $TESTUSERDN

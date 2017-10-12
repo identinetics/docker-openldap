@@ -27,8 +27,10 @@ pipeline {
                 ./dscripts/exec.sh -I /opt/init/openldap/scripts/setupPhoAt.sh
                 '''
                 sh '''
-                echo 'query data ..'
+                echo 'query data via domain socket and external authentication ..'
                 ./dscripts/exec.sh -I ldapsearch -Y EXTERNAL -H ldapi://%2Ftmp%2Fldapi -b cn=config
+                echo 'Test Python3 ldap3 lib, connect via TCP socket ..'
+                ./dscripts/exec.sh -I /tests/test1.sh
                 '''
             }
         }
@@ -44,7 +46,7 @@ pipeline {
                 sleep 2
                 echo 'Load initial tree data ..'
                 ./dscripts/exec.sh -I -u $randomuid /opt/init/openldap/scripts/setupPhoAt.sh
-                echo 'query data ..'
+                echo 'query data via domain socket and external authentication ..'
                 ./dscripts/exec.sh -I -u $randomuid ldapsearch -Y EXTERNAL -H ldapi://%2Ftmp%2Fldapi -b cn=config
                 '''
             }

@@ -1,5 +1,14 @@
+# ---------- Test Subtree ----------------
+dn: ou=ph99,o=BMUKK
+objectClass: organizationalUnit
+ou: ph08
+
+dn: ou=user,ou=ph99,o=BMUKK
+objectClass: organizationalUnit
+ou: user
+
 # ---------- Test-User 1 -----------------
-dn: cn=test.user1234567,ou=user,ou=ph08,o=BMUKK
+dn: cn=test.user1234567,ou=user,ou=ph99,o=BMUKK
 objectClass: inetOrgPerson
 objectClass: phonlinePerson
 objectClass: idnSyncstat
@@ -19,7 +28,7 @@ phonlineUniqueId: 08154711
 etlTimestamp: 20170724132659Z
 
 # ---------- Test-User 2 -----------------
-dn: cn=test.user7654321,ou=user,ou=ph08,o=BMUKK
+dn: cn=test.user7654321,ou=user,ou=ph99,o=BMUKK
 objectClass: inetOrgPerson
 objectClass: phonlinePerson
 objectClass: idnSyncstat
