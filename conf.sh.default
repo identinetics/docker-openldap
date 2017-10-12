@@ -48,7 +48,10 @@ _set_users() {
 
 _set_buildargs() {
     SLAPDPORT=8389
-    export BUILDARGS="--build-arg SLAPDPORT=$SLAPDPORT"
+    export BUILDARGS="
+        --build-arg SLAPDPORT=$SLAPDPORT
+    "
+    export DSCRIPTS_DOCKERFILE='Dockerfile.rhel'
 }
 
 
@@ -58,7 +61,7 @@ _set_run_args() {
         -e ROOTPW=changeit
         -e USERNAME=slapd
         -e SLAPDHOST=0.0.0.0
-        -e DEBUGLEVEL=0
+        -e DEBUGLEVEL=conns,config,stats,shell
     "
         # full debug & trace
         # -e DEBUGLEVEL=conns,config,stats,shell,trace

@@ -1,15 +1,11 @@
 FROM centos:centos7
+#FROM <<BASEIMAGE>> prep vor dyn selection via build_prepare.sh
 LABEL maintainer="Rainer Hörbe <r2h2@hoerbe.at>" \
       version="0.0.0" \
       #UID_TYPE: select one of root, non-root or random to announce container behavior wrt USER
       UID_TYPE="random" \
       #didi_dir="https://raw.githubusercontent.com/identinetics/dscripts-test/master/didi" \
       capabilities='--cap-drop=all'
-
-# Enable proxy args if required by docker host
-#? ARG http_proxy
-#? ARG https_proxy
-#? ARG no_proxy
 
 ARG UID=343006
 ARG USERNAME=ldap
@@ -24,6 +20,7 @@ RUN yum -y update \
  && curl https://bootstrap.pypa.io/get-pip.py | python3.4 \
  && pip3 install ldap3 \
  && yum clean all
+ENV $PY3=/usr/bin/python3
 
 RUN yum -y install "perl(POSIX)" libtool-ltdl systemd-sysv tcp_wrappers-libs
 
@@ -41,7 +38,6 @@ RUN mkdir -p /opt/init/openldap/schemas
 COPY install/ldifs/* /opt/init/openldap/ldifs/
 COPY install/schemas/* /opt/init/openldap/schemas/
 COPY install/openldap_scripts/* /opt/init/openldap/scripts/
-#RUN chmod +x /opt/init/openldap/scripts/*
 RUN chmod +x /opt/init/openldap/scripts/*
 RUN cd /opt/init/openldap/schemas \
  && /opt/init/openldap/scripts/schema2ldif.sh
@@ -89,3 +85,4 @@ EXPOSE 8389
 
 CMD /scripts/start_slapd.sh
 USER ldap
+ENV $PY3=/usr/bin/python3
