@@ -1,30 +1,14 @@
 pipeline {
     agent any
-    stages {
-        stage('Git pull + branch + submodule') {
-            steps {
-                sh '''
-                #http_proxy=${env.http_proxy}
-                #https_proxy=${env.https_proxy}
-                #echo 'pulling updates'
-                #git pull
-                git submodule update --init
-                cd ./dscripts && git checkout master && git pull && cd -
-                '''
-            }
-        }
         stage('docker cleanup') {
             steps {
                 sh './dscripts/manage.sh rm 2>/dev/null || true'
                 sh './dscripts/manage.sh rmvol 2>/dev/null || true'
-                sh 'sudo docker ps --all'
             }
         }
         stage('Build') {
             steps {
                 sh '''
-                #http_proxy=${env.http_proxy}
-                #https_proxy=${env.https_proxy}
                 echo 'Building ..'
                 rm conf.sh 2> /dev/null || true
                 ln -s conf.sh.default conf.sh

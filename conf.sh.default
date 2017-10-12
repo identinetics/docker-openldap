@@ -51,7 +51,9 @@ _set_buildargs() {
     export BUILDARGS="
         --build-arg SLAPDPORT=$SLAPDPORT
     "
-    export DSCRIPTS_DOCKERFILE='Dockerfile.rhel'
+    if [[ $USE_DOCKER_RHEL_IMAGE ]]; then
+        export DSCRIPTS_DOCKERFILE='Dockerfile.rhel'
+    fi
 }
 
 
