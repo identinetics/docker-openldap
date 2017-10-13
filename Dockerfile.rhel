@@ -23,7 +23,8 @@ RUN yum -y update \
  && yum clean all
 ENV PY3='scl enable rh-python35 -- python'
 ENV PIP3="$PY3 -m pip"
-RUN $PIP3 install --upgrade pip \
+RUN echo "https_proxy=$https_proxy" \
+ && "$PIP3 install --upgrade pip \
  && $PIP3 install ldap3 \
  && $PIP3 freeze
 
