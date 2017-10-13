@@ -84,5 +84,6 @@ VOLUME /etc/conf
 EXPOSE 8389
 
 CMD /scripts/start_slapd.sh
+COPY REPO_STATUS /opt/
 USER ldap
 ENV $PY3=/usr/bin/python3

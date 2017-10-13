@@ -54,6 +54,7 @@ _set_buildargs() {
     if [[ $USE_DOCKER_RHEL_IMAGE ]]; then
         export DSCRIPTS_DOCKERFILE='Dockerfile.rhel'
     fi
+    export REPO_STATUS='True' # generate REPO_STATUS on each docker build
 }
 
 
