@@ -11,6 +11,7 @@ pipeline {
             steps {
                 sh '''
                 echo 'Building ..'
+                printenv | sort
                 rm conf.sh 2> /dev/null || true
                 ln -s conf.sh.default conf.sh
                 ./dscripts/build.sh -p
