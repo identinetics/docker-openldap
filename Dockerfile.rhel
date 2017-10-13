@@ -14,12 +14,13 @@ RUN useradd --gid $GID --uid $UID ldap \
 
 RUN yum -y update \
  && yum -y install curl iproute lsof net-tools less \
+ && yum repolist > /dev/null \
+ && yum install -y yum-utils \
+ && yum-config-manager --disable \* &> /dev/null \
  && yum-config-manager --enable rhel-server-rhscl-7-rpms \
- && yum -y install rh-python35 rh-python35-python-pip \
+ && yum-config-manager --enable rhel-7-server-rpms \
+ && yum -y install rh-python35 rh-python35-python-devel rh-python35-python-setuptools rh-python35-python-pip \
  && yum clean all
-RUN source /opt/rh/rh-python35/enable \
- && echo "source /opt/rh/rh-python35/enable" > /etc/profile.d/setpython \
- && echo "export PY3=python" >> /etc/profile.d/setpython
 ENV PY3='scl enable rh-python35 -- python'
 ENV PIP3="$PY3 -m pip"
 RUN $PIP3 install --upgrade pip \
