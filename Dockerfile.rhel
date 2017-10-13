@@ -20,9 +20,10 @@ RUN yum -y update \
 RUN source /opt/rh/rh-python35/enable \
  && echo "source /opt/rh/rh-python35/enable" > /etc/profile.d/setpython \
  && echo "export PY3=python" >> /etc/profile.d/setpython
-ENV PIP3='source /opt/rh/rh-python35/enable && pip'
 ENV PY3='scl enable rh-python35 -- python'
-RUN $PIP3 install ldap3 \
+ENV PIP3="$PY3 -m pip"
+RUN $PIP3 install --upgrade pip \
+ && $PIP3 install ldap3 \
  && $PIP3 freeze
 
 RUN yum -y install "perl(POSIX)" libtool-ltdl systemd-sysv tcp_wrappers-libs
