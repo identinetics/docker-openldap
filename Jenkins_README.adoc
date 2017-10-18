@@ -5,6 +5,8 @@
 1. Jenkinsfiles.build_run_test (this will do what it says)
 2. Jenkinsfile (this will run Jenkinsfiles.build_run_test and remove docker container and volumes before and after.
 
+Jenkisfile requires
+
 
 == Base image options
 

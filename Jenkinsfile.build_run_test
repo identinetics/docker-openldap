@@ -54,11 +54,10 @@ pipeline {
               sh 'echo "disabled"'
             }
         }
-        post {
+    }
+    post {
         always {
             echo 'container status'
             sh './dscripts/manage.sh status'
-        }
     }
-}
 }
