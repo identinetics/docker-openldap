@@ -1,0 +1,15 @@
+= Structure of Jenkins Jobs
+
+== Pipeline definitions
+
+1. Jenkinsfiles.build_run_test (this will do what it says)
+2. Jenkinsfile (this will run Jenkinsfiles.build_run_test and remove docker container and volumes before and after.
+
+
+== Base image options
+
+Dockerfile (using Centos 7)
+Dockerfile.rhel (Using RHEL 7)
+
+Dockerfile.rhel will be used by dscripts/build.sh if the env variable USE_DOCKER_RHEL_IMAGE is set.
+This can be done by setting it globally in Jenkins isong the envinject plugin.
