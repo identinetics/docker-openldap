@@ -28,7 +28,10 @@ RUN echo "https_proxy=$https_proxy" \
  && $PIP3 install ldap3 \
  && $PIP3 freeze
 
-RUN yum -y install "perl(POSIX)" libtool-ltdl systemd-sysv tcp_wrappers-libs
+RUN yum -y install "perl(POSIX)"
+RUN yum -y install libtool-ltdl
+RUN yum -y install systemd-sysv
+RUN yum -y install tcp_wrappers-libs
 
 RUN mkdir -p /opt/rpms
 COPY openldap-2.4.45/*.rpm /opt/rpms/
