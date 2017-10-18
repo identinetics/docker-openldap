@@ -105,7 +105,6 @@ setup_vol_mapping() {
 container_status() {
     $sudo docker ps | head -1
     $sudo docker ps --all | egrep $CONTAINERNAME\$
-    $sudo docker exec -it $CONTAINERNAME /status.sh
 }
 
 
