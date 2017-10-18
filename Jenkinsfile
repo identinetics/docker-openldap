@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Build-Run-Test') {
             steps {
-                build job: 'docker-openldap.brt.rhel'
+                build job: 'docker-openldap.rhel.brt'
             }
         }
     }
