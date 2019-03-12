@@ -1,4 +1,4 @@
-FROM centos:centos7
+FROM registry.access.redhat.com/rhel7:7.6
 LABEL maintainer="Rainer Hörbe <r2h2@hoerbe.at>" \
       version="0.0.0" \
       #UID_TYPE: select one of root, non-root or random to announce container behavior wrt USER
@@ -17,13 +17,12 @@ ENV GID 0
 RUN useradd --gid $GID --uid $UID ldap \
  && chown $UID:$GID /run
 
-RUN yum -y update \
- && yum -y install epel-release \
- && yum -y install curl iproute lsof net-tools less \
- && yum -y install python34-devel \
- && curl https://bootstrap.pypa.io/get-pip.py | python3.4 \
- && pip3 install ldap3 \
- && yum clean all
+RUN yum -y install epel-release 
+RUN yum -y install curl iproute lsof net-tools less 
+RUN yum -y install python34-devel 
+RUN curl https://bootstrap.pypa.io/get-pip.py | python3.4
+RUN pip3 install ldap3
+RUN yum clean all
 
 RUN yum -y install "perl(POSIX)" libtool-ltdl systemd-sysv tcp_wrappers-libs
 
