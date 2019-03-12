@@ -25,7 +25,8 @@ RUN curl https://bootstrap.pypa.io/get-pip.py | python3.4
 RUN pip3 install ldap3
 RUN yum clean all
 
-RUN yum -y install "perl(POSIX)" libtool-ltdl systemd-sysv tcp_wrappers-libs
+#RUN yum -y install "perl(POSIX)" libtool-ltdl systemd-sysv tcp_wrappers-libs
+RUN yum -y install "perl(POSIX)" libtool-ltdl tcp_wrappers-libs
 
 RUN mkdir -p /opt/rpms
 COPY openldap-2.4.45/*.rpm /opt/rpms/
