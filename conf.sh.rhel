@@ -1,0 +1,107 @@
+#!/usr/bin/env bash
+
+main() {
+    SCRIPTDIR=$(cd $(dirname $BASH_SOURCE[0]) && pwd)
+    source $SCRIPTDIR/dscripts/conf_lib.sh  # load library functions
+    configlib_version=2  # compatible version of conf_lib.sh
+    check_version $configlib_version
+    # do_not_build $@ # uncomment this line to pull/load image
+    init_sudo
+    _set_volume_root
+    _set_image_and_container_name
+    _set_users
+    _set_buildargs
+    _set_run_args
+}
+
+
+_set_volume_root() {
+    # container volumes mounted to host paths, or symlinks to docker volumes
+    DOCKERVOL_SHORT='/dv'
+    if [[ "$TRAVIS" == "true" ]] || [[ ! -z ${JENKINS_HOME+x} ]]; then
+        DOCKERVOL_SHORT='/tmp/dv'
+    fi
+    mkdir -p $DOCKERVOL_SHORT $DOCKERLOG_SHORT
+}
+
+
+_set_image_and_container_name() {
+    # IMGID qualifies image, container, user and IP adddress; this is helpful for managing
+    # processes on the docker host etc.
+    IMGID='06'
+    PROJSHORT='openldap'
+    SERVICEDESCRIPTION="ldap://10.1.1.${IMGID}:8389"  # adjust to actual service
+    #export IMAGENAME="idn/$PROJSHORT"  # [a-z_0-9] you may want to add an image id and/or staging tag
+    export IMAGENAME="idn/${PROJSHORT}${IMGID}"
+    export CONTAINERNAME="${IMGID}$PROJSHORT"
+    export DOCKER_REGISTRY=''  # empty for docker.io
+    if [[ $JENKINS_HOME ]]; then
+        export DOCKER_REGISTRY='localhost:5000'
+    fi
+}
+
+
+_set_users() {
+    export START_AS_ROOT=      # 'True' (e.g. for apache to fall back to www user)
+}
+
+
+_set_buildargs() {
+    SLAPDPORT=8389
+    export BUILDARGS="--build-arg SLAPDPORT=$SLAPDPORT"
+    export DOCKERFILE='Dockerfile.rhel'
+}
+
+
+_set_run_args() {
+    LOGPURGEFILES='/var/log/httpd/* /var/log/shibboleth/*'
+    export ENVSETTINGS="
+        -e ROOTPW=changeit
+        -e USERNAME=slapd
+        -e SLAPDHOST=0.0.0.0
+        -e DEBUGLEVEL=0
+    "
+        # full debug & trace
+        # -e DEBUGLEVEL=conns,config,stats,shell,trace
+    export STARTCMD=''  # unset or blank to use image default
+}
+
+
+create_intercontainer_network() {
+    # Create a local network on the docker host. As the default docker0 bridge has dynamic
+    # addresses, a custom bridge is created allowing predictable addresses.
+    network='dockernet'
+    set +e  # errexit off
+    $sudo docker network ls | awk '{print $2}' | grep $network > /dev/null
+    if (( $? == 1)); then
+        $sudo docker network create --driver bridge --subnet=10.1.1.0/24 \
+                  -o com.docker.network.bridge.name=br-$network $network
+    fi
+    export NETWORKSETTINGS="
+        --net $network
+        --ip 10.1.1.${IMGID}
+    "
+}
+
+
+setup_vol_mapping() {
+    # Create docker volume (-> map_docker_volume) or map a host dir (-> map_host_directory)
+    # In both cases create a shortcut in the shortcut directory (DOCKERVOL_SHORT, DOCKERLOG_SHORT)
+    mode=$1  # create (used by run.sh)/list (used by manage.sh)
+    export VOLLIST=''
+    export VOLMAPPING=''
+    CONTAINER_GROUPWRITE=no
+    map_docker_volume $mode "${CONTAINERNAME}.db" '/var/db' 'Z' $DOCKERVOL_SHORT
+    map_docker_volume $mode "${CONTAINERNAME}.etc" '/etc/openldap' 'Z' $DOCKERVOL_SHORT
+    map_docker_volume $mode "${CONTAINERNAME}.conf" '/etc/conf' 'Z' $DOCKERVOL_SHORT
+}
+
+
+container_status() {
+    $sudo docker ps | head -1
+    $sudo docker ps --all | egrep $CONTAINERNAME\$
+    $sudo docker exec -it $CONTAINERNAME /status.sh
+}
+
+
+main $@
