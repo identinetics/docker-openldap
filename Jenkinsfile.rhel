@@ -27,7 +27,7 @@ pipeline {
                 #https_proxy=${env.https_proxy}
                 echo 'Building ..'
                 rm conf.sh 2> /dev/null || true
-                ln -s conf.sh.default conf.sh
+                ln -s conf.sh.rhel conf.sh
                 ./dscripts/build.sh -p
                 '''
             }
