@@ -19,3 +19,7 @@ ldappasswd -h localhost -p $SLAPDPORT \
 ldappasswd -h localhost -p $SLAPDPORT \
     -x -D $rootdn -w $ROOTPW \
     -s 'test' 'gvGid=AT:B:1:12348,ou=people,gvOuId=AT:TEST:1,dc=gv,dc=at'
+
+ldappasswd -h localhost -p $SLAPDPORT \
+    -x -D $rootdn -w $ROOTPW \
+    -s 'test' 'gvGid=AT:B:1:12349,ou=people,gvOuId=AT:TEST:1,dc=gv,dc=at'
