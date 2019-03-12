@@ -28,7 +28,8 @@ pipeline {
                 echo 'Building ..'
                 rm conf.sh 2> /dev/null || true
                 ln -s conf.sh.rhel conf.sh
-                ./dscripts/build.sh -p
+                #./dscripts/build.sh -p
+                sudo docker build --build-arg SLAPDPORT=8389 --build-arg http_proxy=http://proxy.lfrz.at:8080 --build-arg https_proxy=http://proxy.lfrz.at:8080 --build-arg ftp_proxy= --build-arg no_proxy=,127.0.0.1,localhost,*.vie01.local --build-arg HTTP_PROXY=http://proxy.lfrz.at:8080 --build-arg HTTPS_PROXY=http://proxy.lfrz.at:8080 --build-arg FTP_PROXY= --build-arg NO_PROXY=,127.0.0.1,localhost,*.vie01.local -t idn/openldap06 -f=Dockerfile.rhel .
                 '''
             }
         }
